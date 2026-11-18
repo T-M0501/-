@@ -1,0 +1,18 @@
+import Phaser from 'phaser';
+import { BootScene } from './scenes/BootScene';
+import { HideoutScene } from './scenes/HideoutScene';
+import { RaidScene } from './scenes/RaidScene';
+import { ResultScene } from './scenes/ResultScene';
+
+new Phaser.Game({
+  type: Phaser.AUTO,
+  parent: 'game',
+  backgroundColor: '#1a1a1a',
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: 1280,
+    height: 720,
+  },
+  scene: [BootScene, HideoutScene, RaidScene, ResultScene],
+});
