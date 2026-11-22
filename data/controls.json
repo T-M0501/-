@@ -1,0 +1,12 @@
+{
+  "keyboard": {
+    "up": "KeyW",
+    "down": "KeyS",
+    "left": "KeyA",
+    "right": "KeyD",
+    "reload": "KeyR"
+  },
+  "mouse": {
+    "fireButton": 0
+  }
+}
