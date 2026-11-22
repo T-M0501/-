@@ -8,5 +8,24 @@
   },
   "mouse": {
     "fireButton": 0
+  },
+  "touch": {
+    "screenWidth": 1280,
+    "screenHeight": 720,
+    "moveAreaRatio": 0.5,
+    "stickRadius": 90,
+    "deadzone": 0.15,
+    "fireThreshold": 0.5,
+    "reloadButton": {
+      "x": 1170,
+      "y": 560,
+      "radius": 52
+    },
+    "backButton": {
+      "x": 16,
+      "y": 16,
+      "width": 96,
+      "height": 48
+    }
   }
 }

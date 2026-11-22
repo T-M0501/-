@@ -13,32 +13,35 @@ export function bindKeyboardMouse(
 ): () => void {
   const onKeyDown = (e: KeyboardEvent) => input.keyDown(e.code);
   const onKeyUp = (e: KeyboardEvent) => input.keyUp(e.code);
-  const toGame = (e: MouseEvent) => {
+  const toGame = (e: PointerEvent) => {
     const r = canvas.getBoundingClientRect();
     input.mouseMove(
       ((e.clientX - r.left) / r.width) * gameSize.width,
       ((e.clientY - r.top) / r.height) * gameSize.height,
     );
   };
-  const onDown = (e: MouseEvent) => {
+  // タッチ操作はTouchInput側で扱うので、ここではマウスだけを見る
+  const onMove = (e: PointerEvent) => e.pointerType === 'mouse' && toGame(e);
+  const onDown = (e: PointerEvent) => {
+    if (e.pointerType !== 'mouse') return;
     toGame(e);
     input.mouseDown(e.button);
   };
-  const onUp = (e: MouseEvent) => input.mouseUp(e.button);
+  const onUp = (e: PointerEvent) => e.pointerType === 'mouse' && input.mouseUp(e.button);
   const onBlur = () => input.reset();
 
   window.addEventListener('keydown', onKeyDown);
   window.addEventListener('keyup', onKeyUp);
   window.addEventListener('blur', onBlur);
-  canvas.addEventListener('mousemove', toGame);
-  canvas.addEventListener('mousedown', onDown);
-  window.addEventListener('mouseup', onUp);
+  canvas.addEventListener('pointermove', onMove);
+  canvas.addEventListener('pointerdown', onDown);
+  window.addEventListener('pointerup', onUp);
   return () => {
     window.removeEventListener('keydown', onKeyDown);
     window.removeEventListener('keyup', onKeyUp);
     window.removeEventListener('blur', onBlur);
-    canvas.removeEventListener('mousemove', toGame);
-    canvas.removeEventListener('mousedown', onDown);
-    window.removeEventListener('mouseup', onUp);
+    canvas.removeEventListener('pointermove', onMove);
+    canvas.removeEventListener('pointerdown', onDown);
+    window.removeEventListener('pointerup', onUp);
   };
 }

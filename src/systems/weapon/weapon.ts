@@ -19,6 +19,7 @@ export interface WeaponDef {
   movingSpreadAdd: number;
   sprintingSpreadAdd: number;
   weight: number;
+  bulletSpeed: number; // px/秒
 }
 
 export interface WeaponData {
