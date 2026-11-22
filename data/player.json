@@ -1,0 +1,8 @@
+{
+  "moveSpeed": 220,
+  "radius": 14,
+  "startWeapon": "ar_ar4",
+  "cameraZoom": 1.5,
+  "bulletRadius": 3,
+  "maxBullets": 60
+}
